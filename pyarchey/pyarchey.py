@@ -30,6 +30,7 @@ import psutil as ps                     # system info
 import datetime as dt                   # uptime
 import json                             # json
 import argparse                         # handle command line args
+import math
 
 #---------------Dictionaries---------------#
 #  https://wiki.archlinux.org/index.php/Color_Bash_Prompt
@@ -285,16 +286,14 @@ logosDict = {'Arch Linux': '''{color[1]}
 }
 
 
-
-def autoSize(used,total):
-    mem = ['B','KB','MB','GB','TB','PB']
-    for x in range(1,5):
-        if (total / (1024 ** x)) < 1000:
-            used = used / (1024 ** x)
-            total = total / (1024 ** x)
+def autoSize(used, total):
+    mem = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+    for x in range(1, 5):
+        if total > 1000:
+            used = math.ceil(used / 1024)
+            total = math.ceil(total / 1024)
             size = mem[x]
-            break
-    return used,total,size
+    return int(used), int(total), size
 
 #---------------Classes---------------#
 
