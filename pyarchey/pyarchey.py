@@ -32,30 +32,30 @@ import json                             # json
 import argparse                         # handle command line args
 import math
 
-#---------------Dictionaries---------------#
+# ---------------Dictionaries--------------- #
 #  https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # escape[ x;y   x-{0 normal 1 bold} y-color
-CLR="\033[0;0m"   # normal color scheme
-BK ="\033[0;30m"   # black
-BL ="\033[0;34m"   # blue
-GR ="\033[0;32m"   # green
-CY ="\033[0;36m"   # cyan
-RD ='\033[0;31m'   # red
-PL ="\033[0;35m"   # purple
-BR ="\033[0;33m"   # brown
-GY ="\033[0;30m"   # grey
-LG ="\033[0;37m"   # light grey
+CLR = "\033[0;0m"   # normal color scheme
+BK = "\033[0;30m"   # black
+BL = "\033[0;34m"   # blue
+GR = "\033[0;32m"   # green
+CY = "\033[0;36m"   # cyan
+RD = "\033[0;31m"   # red
+PL = "\033[0;35m"   # purple
+BR = "\033[0;33m"   # brown
+GY = "\033[0;30m"   # grey
+LG = "\033[0;37m"   # light grey
 
 # Bold colors (note be 'B' before the color name)
-BBK ="\033[1;30m"   # black
-BBL ="\033[1;34m"   # blue
-BGR ="\033[1;32m"   # green
-BCY ="\033[1;36m"   # cyan
-BRD ='\033[1;31m'   # red
-BPL ="\033[1;35m"   # purple
-BBR ="\033[1;33m"   # brown
-BGY ="\033[1;30m"   # grey
-BLG ="\033[1;37m"   # light grey
+BBK = "\033[1;30m"   # black
+BBL = "\033[1;34m"   # blue
+BGR = "\033[1;32m"   # green
+BCY = "\033[1;36m"   # cyan
+BRD = "\033[1;31m"   # red
+BPL = "\033[1;35m"   # purple
+BBR = "\033[1;33m"   # brown
+BGY = "\033[1;30m"   # grey
+BLG = "\033[1;37m"   # light grey
 
 colorDict = {
     'Arch Linux':       [BL, BBL],
@@ -65,7 +65,7 @@ colorDict = {
     'Debian':           [RD, BRD],
     'Raspbian':         [RD, BRD],
     'LinuxMint':        [BLG, BGR],
-    'CrunchBang':       [BLG,BLG],
+    'CrunchBang':       [BLG, BLG],
     'Fedora':           [BLG, BBL, BL],
     'openSUSE project': [BLG, BGR],
     'Slackware':        [BLG, BL, BBL],
@@ -93,8 +93,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}  ;####                 ####;
 {color[0]}  ##'                     '##
 {color[0]} #'                         `#
-\x1b[0m'''
-,'FreeBSD':'''{color[0]}
+\x1b[0m''',
+             'FreeBSD': '''{color[0]}
 {color[0]}  ```                        `    {results[0]}
 {color[0]} s` `.....---.......--.```   -/   {results[1]}
 {color[0]} +o   .--`         /y:`      +.   {results[2]}
@@ -113,8 +113,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}
 {color[0]}
 {color[0]}
-\x1b[0m'''
-,'Debian':'''{color[0]}
+\x1b[0m''',
+             'Debian': '''{color[0]}
 {color[1]}           _sudZUZ#Z#XZo=_        {results[0]}
 {color[1]}        _jmZZ2!!~---~!!X##wx      {results[1]}
 {color[1]}     .<wdP~~            -!YZL,    {results[2]}
@@ -131,8 +131,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}        +3#bc,
 {color[0]}          -)SSL,,
 {color[0]}             ~~~~~
-\x1b[0m'''
-,'Raspbian':'''{color[0]}
+\x1b[0m''',
+             'Raspbian': '''{color[0]}
 {color[0]}        .~~.   .~~.      {results[0]}
 {color[0]}       '. \ ' ' / .'     {results[1]}
 {color[0]}        .~ .~~~..~.      {results[2]}
@@ -146,8 +146,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}                         {results[10]}
 {color[0]}                         {results[11]}
 {color[0]}                         {results[12]}
-\x1b[0m'''
-,'Ubuntu':'''{color[0]}
+\x1b[0m''',
+             'Ubuntu': '''{color[0]}
 {color[0]}                          .oyhhs:   {results[0]}
 {color[1]}                 ..--.., {color[0]}shhhhhh-   {results[1]}
 {color[1]}               -+++++++++`:{color[0]}yyhhyo`  {results[2]}
@@ -166,8 +166,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}               `.:://::- {color[2]}-:::::;
 {color[2]}                         `.-:-'
 {color[2]}
-\x1b[0m'''
-,'LinuxMint':'''{color[0]}
+\x1b[0m''',
+             'LinuxMint': '''{color[0]}
 {color[0]} MMMMMMMMMMMMMMMMMMMMMMMMMmds+.      {results[0]}
 {color[0]} MMm----::-://////////////oymNMd+`   {results[1]}
 {color[0]} MMd      {color[1]}/++                {color[0]}-sNMd:  {results[2]}
@@ -186,8 +186,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}
 {color[0]}
 {color[0]}
-\x1b[0m'''
-,'Fedora':'''{color[0]}
+\x1b[0m''',
+             'Fedora': '''{color[0]}
 {color[2]}           :/------------://        {results[0]}
 {color[2]}        :------------------://      {results[1]}
 {color[2]}      :-----------{color[0]}/shhdhyo/{color[2]}-://     {results[2]}
@@ -206,8 +206,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[2]} :------{color[0]}:://:{color[2]}-----------://
 {color[2]} :--------------------://
 {color[2]}
-\x1b[0m'''
-,'openSUSE project':'''{color[0]}
+\x1b[0m''',
+             'openSUSE project': '''{color[0]}
 {color[1]}        +########_ #=.    {results[0]}
 {color[1]}      ################-#  {results[1]}
 {color[1]}    =################ -:+ {results[2]}
@@ -224,8 +224,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[1]}
 {color[1]}
 {color[1]}
-\x1b[0m'''
-, 'Slackware':'''{color[0]}
+\x1b[0m''',
+             'Slackware': '''{color[0]}
 {color[1]}                   :::::::                    {results[0]}
 {color[1]}             :::::::::::::::::::              {results[1]}
 {color[1]}          :::::::::::::::::::::::::           {results[2]}
@@ -248,8 +248,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[1]}            ::::::::::::::::::::::
 {color[1]}                 ::::::::::::
 {color[1]}
-\x1b[0m'''
-, 'Mac OSX':'''
+\x1b[0m''',
+             'Mac OSX': '''
 {color[0]}                  ##             {results[0]}
 {color[0]}               ####              {results[1]}
 {color[0]}               ##                {results[2]}
@@ -263,8 +263,8 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}      ####################       {results[10]}
 {color[0]}        ################         {results[11]}
 {color[0]}          ###     ####           {results[12]}
-\x1b[0m'''
-, 'Linux':'''
+\x1b[0m''',
+             'Linux': '''
 {color[0]}              a8888b.            {results[0]}
 {color[0]}             d888888b.           {results[1]}
 {color[0]}             8P"YP"Y88           {results[2]}
@@ -281,9 +281,7 @@ logosDict = {'Arch Linux': '''{color[1]}
 {color[0]}      \    YP"      `| 8P  `.
 {color[0]}      /     \._____.d|    .'
 {color[0]}      `--..__)888888P`._.'
-\x1b[0m'''
-
-}
+\x1b[0m'''}
 
 
 def autoSize(used, total):
@@ -295,19 +293,19 @@ def autoSize(used, total):
             size = mem[x]
     return int(used), int(total), size
 
-#---------------Classes---------------#
 
+# ---------------Classes--------------- #
 class Output:
     results = []
-    #results.extend(['']*(18-len(output)))
+    # results.extend(['']*(18-len(output)))
 
     def __init__(self):
-        #dist = self.detectDistro()
+        # dist = self.detectDistro()
         self.distro = self.detectDistro()
         self.json = {}
-        #self.dist = dist
+        # self.dist = dist
 
-    def fileCheck(self,f):
+    def fileCheck(self, f):
         """
         1. Checks if a file exists, if so, reads it
         2. looks for distribution name in file
@@ -319,9 +317,18 @@ class Output:
             txt = open(f).readlines()
 
         else:
-            return False,'Linux'
+            return False, 'Linux'
 
-        linux = ['Arch','Fedora','LinuxMint','Ubuntu','SUSE','Debian','Raspbian','Slackware']
+        linux = [
+            'Arch',
+            'Fedora',
+            'LinuxMint',
+            'Ubuntu',
+            'SUSE',
+            'Debian',
+            'Raspbian',
+            'Slackware'
+        ]
         dist = 'Linux'
         ans = False
         for line in txt:
@@ -331,7 +338,7 @@ class Output:
                     ans = True
                     break
 
-        return ans,dist
+        return ans, dist
 
     def detectDistro(self):
         dist = _platform
@@ -341,49 +348,60 @@ class Output:
             dist = 'FreeBSD'
         else:
             try:
-                dist = Popen(['lsb_release', '-is'], stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
+                dist = Popen(
+                    ['lsb_release', '-is'],
+                    stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
             except:
-                #print 'Error w/ lsb_release'
-                ans,dist = self.fileCheck('/etc/os-release')
-                if not ans: dist = 'Linux'
+                # print 'Error w/ lsb_release'
+                ans, dist = self.fileCheck('/etc/os-release')
+                if not ans:
+                    dist = 'Linux'
 
         # Correct some distribution names
         if dist == 'Arch':
-            dist =  'Arch Linux'
+            dist = 'Arch Linux'
         elif dist == 'openSUSE project':
             dist = 'openSUSE'
 
-
         return dist
 
-
     def append(self, display):
-        self.results.append('%s%s: %s%s' % (colorDict[self.distro][1], display.key, colorDict['Clear'][0], display.value))
+        self.results.append('%s%s: %s%s' % (colorDict[self.distro][1],
+                                            display.key,
+                                            colorDict['Clear'][0],
+                                            display.value))
         self.json[display.key] = display.value
 
     def output(self, json=False):
         if json:
             return self.json
         else:
-            print(logosDict[self.distro].format(color = colorDict[self.distro], results = self.results))
+            print(logosDict[self.distro].format(color=colorDict[self.distro],
+                                                results=self.results))
+
 
 class User:
     def __init__(self):
         self.key = 'User'
         self.value = os.getenv('USER')
 
+
 class Hostname:
     def __init__(self):
-        hostname = Popen(['uname', '-n'], stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
+        hostname = Popen(
+            ['uname', '-n'],
+            stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
         self.key = 'Hostname'
         self.value = hostname
 
 
 class OS:
-    def __init__(self,dist):
+    def __init__(self, dist):
         OS = dist
 
-        arch = Popen(['uname', '-m'], stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
+        arch = Popen(
+            ['uname', '-m'],
+            stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
         OS = OS + ' ' + arch
 
         self.key = 'OS'
@@ -392,9 +410,12 @@ class OS:
 
 class Kernel:
     def __init__(self):
-        kernel = Popen(['uname', '-r'], stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
+        kernel = Popen(
+            ['uname', '-r'],
+            stdout=PIPE).communicate()[0].decode('Utf-8').rstrip('\n')
         self.key = 'Kernel'
         self.value = kernel
+
 
 class Uptime:
     def __init__(self):
@@ -402,60 +423,90 @@ class Uptime:
         up = dt.datetime.fromtimestamp(up)
         now = dt.datetime.now()
         diff = now - up
-        uptime = '%d days %d hrs %d mins' %(diff.days,diff.seconds/3600,(diff.seconds%3600)/60)
+        uptime = '%d days %d hrs %d mins' % (
+            diff.days, diff.seconds / 3600, (diff.seconds % 3600) / 60)
         self.key = 'Uptime'
         self.value = uptime
+
 
 class Shell:
     def __init__(self):
         self.key = 'Shell'
         self.value = os.getenv('SHELL')
 
+
 class Processes:
     def __init__(self):
         self.key = 'Processes'
-        self.value =  str(len(ps.pids())) + ' running'
+        self.value = str(len(ps.pids())) + ' running'
+
 
 class Packages:
-    def __init__(self,dist):
+    def __init__(self, dist):
         try:
             if dist == 'Mac OSX':
-                p1 = Popen(['brew', 'list', '-1'], stdout=PIPE).communicate()[0].decode("Utf-8")
+                p1 = Popen(
+                    ['brew', 'list', '-1'],
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
             elif dist == 'FreeBSD':
-                p1 = Popen(['pkg', 'info'], stdout=PIPE).communicate()[0].decode("Utf-8")
+                p1 = Popen(
+                    ['pkg', 'info'],
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
             elif dist == 'Arch':
-                p1 = Popen(['pacman', '-Q'], stdout=PIPE).communicate()[0].decode("Utf-8")
+                p1 = Popen(
+                    ['pacman', '-Q'],
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
             elif dist == 'Fedora' or dist == 'openSUSE project':
-                p1 = Popen(['rpm', '-qa'], stdout=PIPE).communicate()[0].decode("Utf-8")
-            elif dist == 'Ubuntu' or dist == 'Debian' or dist == 'LinuxMint' or dist == 'Raspbian':
-                p0 = Popen(['dpkg', '--get-selections'], stdout=PIPE)
-                p1 = Popen(['grep', '-v', 'deinstall'], stdin=p0.stdout, stdout=PIPE).communicate()[0].decode("Utf-8")
+                p1 = Popen(
+                    ['rpm', '-qa'],
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
+            elif (dist == 'Ubuntu' or dist == 'Debian' or
+                    dist == 'LinuxMint' or dist == 'Raspbian'):
+                p0 = Popen(
+                    ['dpkg', '--get-selections'], stdout=PIPE)
+                p1 = Popen(
+                    ['grep', '-v', 'deinstall'],
+                    stdin=p0.stdout,
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
             elif dist == 'Slackware':
-                 p1 = Popen(['ls', '/var/log/packages/'], stdout=PIPE).communicate()[0].decode("Utf-8")
+                p1 = Popen(
+                    ['ls', '/var/log/packages/'],
+                    stdout=PIPE).communicate()[0].decode("Utf-8")
             packages = len(p1.rstrip('\n').split('\n'))
         except:
             packages = 0
         self.key = 'Packages'
         self.value = packages
 
+
 class CPU:
-    def __init__(self,dist):
-        #file = open('/proc/cpuinfo').readlines()
+    def __init__(self, dist):
+        # file = open('/proc/cpuinfo').readlines()
         try:
             if dist == 'Mac OSX':
-                cpu = Popen(['sysctl', '-n','machdep.cpu.brand_string'], stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')[0]
-                c = cpu.replace('(R)','').replace('(TM)','').replace('CPU','').split()
+                cpu = Popen(
+                    ['sysctl', '-n', 'machdep.cpu.brand_string'],
+                    stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')[0]
+                c = cpu.replace('(R)', '').replace('(TM)', '').replace(
+                    'CPU', '').split()
                 cpuinfo = ' '.join(c)
             elif dist == 'FreeBSD':
-                file = Popen(['sysctl', '-n','hw'], stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')
-                cpuinfo = re.sub('  +', ' ', file[1].replace('model name\t: ', '').rstrip('\n'))
+                file = Popen(
+                    ['sysctl', '-n', 'hw'],
+                    stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')
+                cpuinfo = re.sub('  +', ' ', file[1].replace(
+                    'model name\t: ', '').rstrip('\n'))
             else:
-                file = Popen(['grep', '-i', 'model name\t: ', '/proc/cpuinfo'], stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')
-                cpuinfo = re.sub('  +', ' ', file[0].replace('model name\t: ', ''))
+                file = Popen(
+                    ['grep', '-i', 'model name\t: ', '/proc/cpuinfo'],
+                    stdout=PIPE).communicate()[0].decode('Utf-8').split('\n')
+                cpuinfo = re.sub(
+                    '  +', ' ', file[0].replace('model name\t: ', ''))
         except:
             cpuinfo = 'unknown'
         self.key = 'CPU'
         self.value = cpuinfo
+
 
 class RAM:
     def __init__(self):
@@ -463,19 +514,20 @@ class RAM:
         used = ram.used
         total = ram.total
 
-        used,total,size = autoSize(used,total)
-        ramdisplay = '%s %s/ %s %s' % (used, size, total,size)
+        used, total, size = autoSize(used, total)
+        ramdisplay = '%s %s/ %s %s' % (used, size, total, size)
 
         self.key = 'RAM'
         self.value = ramdisplay
 
+
 class Disk:
-    def __init__(self,json=False):
+    def __init__(self, json=False):
         p = ps.disk_usage('/')
         total = p.total
         used = p.used
 
-        used,total,size = autoSize(used,total)
+        used, total, size = autoSize(used, total)
 
         usedpercent = int(float(used)/float(total)*100.0)
 
@@ -483,13 +535,20 @@ class Disk:
             disk = '%s / %s %s' % (used, total, size)
         else:
             if usedpercent <= 33:
-                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][1], used, colorDict['Clear'][0], total, size)
+                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][1],
+                                           used,
+                                           colorDict['Clear'][0], total, size)
             if usedpercent > 33 and usedpercent < 67:
-                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][2], used, colorDict['Clear'][0], total, size)
+                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][2],
+                                           used,
+                                           colorDict['Clear'][0], total, size)
             if usedpercent >= 67:
-                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][0], used, colorDict['Clear'][0], total, size)
+                disk = '%s%s %s/ %s %s' % (colorDict['Sensors'][0],
+                                           used, colorDict['Clear'][0],
+                                           total, size)
         self.key = 'Disk'
         self.value = disk
+
 
 class IP:
     def __init__(self, zeroconfig=False):
@@ -502,7 +561,7 @@ class IP:
             host = socket.gethostname()
             if zeroconfig:
                 if host.find('.local') < 0:
-                    host=host + '.local'
+                    host = host + '.local'
 
             ip = socket.gethostbyname(host)
         except:
@@ -511,22 +570,29 @@ class IP:
         self.key = 'IP'
         self.value = ip
 
+
 class CPU2:
     def __init__(self):
         cpu = ps.cpu_percent(interval=1, percpu=True)
         self.key = 'CPU Usage'
         self.value = str(cpu)
 
+
 def handleArgs():
-	parser = argparse.ArgumentParser('Displays system info and a logo for OS')
-	#parser.add_argument('-a', '--art', help='not implemented yet')
-	parser.add_argument('-d', '--display', help='displays all ascii logos', action='store_true')
-	parser.add_argument('-z', '--zeroconfig', help='assume a zeroconfig network and adds .local to the hostname', action='store_true')
-	parser.add_argument('-j', '--json', help='instead of printing to screen, returns system as json', action='store_true')
+    parser = argparse.ArgumentParser('Displays system info and a logo for OS')
+    # parser.add_argument('-a', '--art', help='not implemented yet')
+    parser.add_argument('-d', '--display', help='displays all ascii logos',
+                        action='store_true')
+    parser.add_argument('-z', '--zeroconfig',
+                        help='assume a zeroconfig network and adds .local to '
+                        'the hostname', action='store_true')
+    parser.add_argument('-j', '--json', help='instead of printing to screen, '
+                        'returns system as json', action='store_true')
 
-	args = vars(parser.parse_args())
+    args = vars(parser.parse_args())
 
-	return args
+    return args
+
 
 def main():
     args = handleArgs()
@@ -534,31 +600,29 @@ def main():
     if args['display']:
         for i in logosDict:
             print(i)
-            print(logosDict[i].format(color = colorDict[i],results=list(xrange(0,13))) )
+            print(logosDict[i].format(color=colorDict[i],
+                                      results=list(xrange(0, 13))))
         return 0
 
     out = Output()
-    out.append( User() )
-    out.append( Hostname() )
-    out.append( IP(args['zeroconfig']) )
-    out.append( OS(out.distro) )
-    out.append( Kernel() )
-    out.append( Uptime() )
-    out.append( Shell() )
-    out.append( Processes() )
-    out.append( Packages(out.distro) )
-    out.append( CPU(out.distro) )
-    out.append( CPU2() )
-    out.append( RAM() )
-    out.append( Disk(args['json']) )
+    out.append(User())
+    out.append(Hostname())
+    out.append(IP(args['zeroconfig']))
+    out.append(OS(out.distro))
+    out.append(Kernel())
+    out.append(Uptime())
+    out.append(Shell())
+    out.append(Processes())
+    out.append(Packages(out.distro))
+    out.append(CPU(out.distro))
+    out.append(CPU2())
+    out.append(RAM())
+    out.append(Disk(args['json']))
 
     jsn = out.output(args['json'])
 
-
     if args['json']:
         return json.dumps(jsn)
-
-
 
 if __name__ == '__main__':
     main()
